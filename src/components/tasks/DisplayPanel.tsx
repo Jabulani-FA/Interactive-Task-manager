@@ -16,6 +16,7 @@ import {
 } from "./taskList";
 import TaskCardDraggable from "./TaskCardDraggable";
 import { useThemeStore } from "@/store/useThemeStore";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 // Droppable column
 function Column({ id, title, tasks, children }) {
@@ -95,7 +96,13 @@ const DisplayPanel = () => {
           <BellDot size={16} />
           <Calendar size={16} />
           <p className="text-sm font-light">19 May 2022</p>
-          <Circle />
+          <Avatar className="h-8 w-8">
+            <AvatarImage
+              src={"https://i.pravatar.cc/150?u=vincent"}
+              alt="V"
+            />
+            <AvatarFallback>{"A"}</AvatarFallback>
+          </Avatar>
         </div>
       </div>
 
