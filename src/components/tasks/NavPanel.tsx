@@ -15,7 +15,7 @@ const NavPanel = () => {
       <div className={theme === "dark" ? "text-white col-span-9 bg-neutral-950 min-h-screen px-4 py-6" : "bg-white text-black min-h-screen col-span-9 px-4 py-6"}>
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-bold">Projects</h1>
-          <Plus size={16} />
+          <div className={theme==="dark"?"bg-zinc-700 p-1 rounded-full":"bg-zinc-200 p-1 rounded-full"}><Plus size={16} /></div>
         </div>
         <div className="flex justify-between items-center mt-4">
           <h6 className={theme==="dark"? `text-white text-sm text-neutral-500 font-bold`:"text-black text-sm text-neutral-500 font-bold"}>Team</h6>
