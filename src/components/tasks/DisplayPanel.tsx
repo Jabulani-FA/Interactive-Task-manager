@@ -31,7 +31,7 @@ function Column({ id, title, tasks, children }) {
           ? `bg-black rounded-xl p-4 min-h-64 col-span-4 transition-colors ${
               isOver ? "bg-zinc-800" : "bg-black"
             }`
-          : `bg-white text-black rounded-xl p-4 min-h-64 col-span-4 transition-colors ${
+          : `bg-white border-2 border-dashed border-zinc-200 text-black rounded-xl p-4 min-h-64 col-span-4 transition-colors ${
               isOver ? "bg-zinc-800" : "bg-white"
             }`
       }
