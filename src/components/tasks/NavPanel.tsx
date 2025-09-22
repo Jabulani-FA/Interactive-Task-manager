@@ -99,12 +99,12 @@ const NavPanel = () => {
           </div>
         </div>
        <div className="absolute bottom-0 mb-6 flex justify-around">
-          <div className="flex bg-zinc-800 p-px rounded-3xl">
+          <div className={theme==="dark"?"flex bg-zinc-800 p-px rounded-3xl":"flex bg-zinc-300 p-px rounded-3xl"}>
             {/* Light button */}
             <button
               onClick={() => setTheme("light")}
-              className={`flex items-center gap-1 px-6 py-2 rounded-2xl transition ${
-                theme === "light" ? "bg-zinc-700 text-white" : "text-zinc-400"
+              className={`flex items-center gap-1 px-6 py-1 rounded-3xl transition ${
+                theme === "light" ? "bg-white shadow-xl text-black" : "text-zinc-400"
               }`}
             >
               <Sun size={16} className={theme==="dark"? `text-white`:"text-black"}  />
@@ -114,8 +114,8 @@ const NavPanel = () => {
             {/* Dark button */}
             <button
               onClick={() => setTheme("dark")}
-              className={`flex items-center gap-1 px-6 py-2 rounded-2xl transition ${
-                theme === "dark" ? "bg-zinc-700 text-white" : "text-zinc-400"
+              className={`flex items-center gap-1 px-6 py-1 rounded-3xl transition ${
+                theme === "dark" ? "bg-zinc-700 shadow-xl text-white" : "text-black"
               }`}
             >
               <Moon size={16} className={theme==="dark"? `text-white`:"text-black"}  />
