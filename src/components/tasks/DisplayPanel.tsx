@@ -28,10 +28,10 @@ function Column({ id, title, tasks, children }) {
       ref={setNodeRef}
       className={
         theme === "dark"
-          ? `bg-black rounded-xl p-2 min-h-64 col-span-4 transition-colors ${
+          ? `bg-black rounded-xl p-4 min-h-64 col-span-4 transition-colors ${
               isOver ? "bg-zinc-800" : "bg-black"
             }`
-          : `bg-white text-black rounded p-2 min-h-64 col-span-4 transition-colors ${
+          : `bg-white text-black rounded-xl p-4 min-h-64 col-span-4 transition-colors ${
               isOver ? "bg-zinc-800" : "bg-white"
             }`
       }
