@@ -6,11 +6,11 @@ import { useThemeStore } from "@/store/useThemeStore";
 const Tasks = () => {
   const { theme } = useThemeStore(); // get from zustand
   return (
-    <div className="grid grid-cols-12">
-      <div className={theme === "dark" ? "bg-zinc-900 text-white col-span-3" : "bg-white text-black col-span-3"}>
+    <div className="grid grid-cols-12 h-screen overflow-hidden">
+      <div className={theme === "dark" ? "bg-zinc-900 text-white col-span-3 h-screen overflow-hidden" : "bg-white text-black col-span-3 h-screen overflow-hidden"}>
         <NavPanel/>
       </div>
-      <div className={theme === "dark" ? "text-white col-span-9 bg-neutral-900 min-h-screen" : "bg-white text-black col-span-9 min-h-screen"}>
+      <div className={theme === "dark" ? "text-white col-span-9 bg-neutral-900 overflow-y-auto" : "bg-white text-black col-span-9 overflow-y-auto"}>
         <DisplayPanel/>
       </div>
     </div>
