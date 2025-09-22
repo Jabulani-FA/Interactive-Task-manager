@@ -17,6 +17,14 @@ function Draggable({ task, id }) {
     Math.round((task.taskProgress / task.taskTarget) * 100)
   );
 
+  // Color grading
+  const getColor = () => {
+    if (percent < 25) return "bg-red-500";
+    if (percent < 50) return "bg-orange-500";
+    if (percent < 75) return "bg-yellow-500";
+    return "bg-green-500";
+  };
+
   const style = {
     transform: transform
       ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
@@ -49,7 +57,7 @@ function Draggable({ task, id }) {
           </p>
         </div>
         <div className="mt-3">
-          <Progress value={percent} className="h-2" />
+          <Progress value={percent} className="h-2" indicatorClassName={getColor()} />
         </div>
         <div className="flex justify-between mt-2">
           <div className="bg-zinc-700 p-px px-4 rounded-2xl">
