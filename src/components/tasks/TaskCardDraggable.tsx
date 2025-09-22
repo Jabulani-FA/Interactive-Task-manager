@@ -7,9 +7,11 @@ import {
 import { useDraggable } from "@dnd-kit/core";
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { useThemeStore } from "@/store/useThemeStore";
 
 // --- Draggable component ---
 function Draggable({ task, id }) {
+  const { theme } = useThemeStore();
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: id,
   });
@@ -51,7 +53,13 @@ function Draggable({ task, id }) {
       {...attributes}
       className="w-full text-white rounded-lg cursor-grab active:cursor-grabbing"
     >
-      <div className="bg-zinc-900 p-3 py-4 rounded-md mt-3 w-full">
+      <div
+        className={
+          theme === "dark"
+            ? "bg-zinc-900 p-3 py-4 rounded-md mt-3 w-full text-white col-span-3 overflow-hidden shadow-xl"
+            : "bg-white text-black overflow-hidden shadow-xl rounded-md mt-3 w-full p-3 py-4"
+        }
+      >
         <div className="flex justify-between">
           <h4 className="text-sm font-bold">{task.title}</h4>
           <CircleEllipsis size={18} />
