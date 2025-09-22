@@ -7,66 +7,71 @@ import {
   PlusCircle,
   CircleEllipsis,
 } from "lucide-react";
-import { DndContext, useDraggable, useDroppable } from "@dnd-kit/core";
+import { DndContext, useDroppable } from "@dnd-kit/core";
 import { useState } from "react";
-import { done, todo, inProgress } from "./taskList";
+import { done as initDone, todo as initTodo, inProgress as initProgress } from "./taskList";
 import TaskCardDraggable from "./TaskCardDraggable";
 
-// --- Draggable component ---
-function Draggable() {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: "draggable-1",
-  });
-
-  const style = {
-    transform: transform
-      ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
-      : undefined,
-  };
-
-  return (
-    <button
-      ref={setNodeRef}
-      style={style}
-      {...listeners}
-      {...attributes}
-      className="p-4 bg-blue-500 text-white rounded-lg cursor-grab active:cursor-grabbing"
-    >
-      Drag me
-    </button>
-  );
-}
-
-// --- Droppable component ---
-function Droppable({ isOver }) {
-  const { setNodeRef } = useDroppable({
-    id: "droppable-1",
-  });
+// Droppable column
+function Column({ id, title, tasks, children }) {
+  const { setNodeRef, isOver } = useDroppable({ id });
 
   return (
     <div
       ref={setNodeRef}
-      className={`w-40 h-40 border-2 rounded-lg flex items-center justify-center
-        ${
-          isOver
-            ? "bg-green-400 border-green-600"
-            : "bg-gray-200 border-gray-400"
-        }
-      `}
+      className={`bg-black rounded p-2 min-h-64 col-span-4 transition-colors ${
+        isOver ? "bg-zinc-800" : "bg-black"
+      }`}
     >
-      Drop here
+      <div className="flex justify-between">
+        <p className="text-sm text-zinc-500">
+          {title} ({tasks.length})
+        </p>
+        <div className="flex items-center gap-1">
+          <PlusCircle size={16} />
+          <p className="text-sm">Add new task</p>
+        </div>
+      </div>
+      {children}
     </div>
   );
 }
 
 const DisplayPanel = () => {
-  const [isOver, setIsOver] = useState(false);
+  const [columns, setColumns] = useState({
+    todo: initTodo,
+    inProgress: initProgress,
+    done: initDone,
+  });
+
+  const handleDragEnd = ({ active, over }) => {
+    if (!over) return;
+
+    const [fromColumn, fromIndex] = active.id.split("-");
+    const toColumn = over.id;
+
+    if (fromColumn === toColumn) return;
+
+    // Copy arrays
+    const fromTasks = [...columns[fromColumn]];
+    const toTasks = [...columns[toColumn]];
+
+    // Move task
+    const [movedTask] = fromTasks.splice(parseInt(fromIndex, 10), 1);
+    toTasks.push(movedTask);
+
+    setColumns({
+      ...columns,
+      [fromColumn]: fromTasks,
+      [toColumn]: toTasks,
+    });
+  };
+
   return (
     <div className="p-4">
+      {/* Top header */}
       <div className="flex justify-between">
-        <div>
-          <h4 className="text-md font-bold">Welcome back, Vincent</h4>
-        </div>
+        <h4 className="text-md font-bold">Welcome back, Vincent</h4>
         <div className="flex items-center gap-2">
           <Search size={16} />
           <BellDot size={16} />
@@ -75,6 +80,8 @@ const DisplayPanel = () => {
           <Circle />
         </div>
       </div>
+
+      {/* Filters */}
       <div className="flex justify-between mt-6">
         <div className="flex gap-4">
           <div className="flex items-center gap-2">
@@ -95,63 +102,23 @@ const DisplayPanel = () => {
           </button>
         </div>
       </div>
+
       <hr className="mt-2" />
-      <div className="columns-3 gap-6 mt-2">
-        <div className="bg-black rounded p-2 min-h-64">
-          <div className="flex justify-between">
-            <p className="text-sm text-zinc-500">To do(4)</p>
-            <div className="flex items-center gap-1">
-              <PlusCircle size={16} />
-              <p className="text-sm">Add new task</p>
-            </div>
-          </div>
-          {todo.map((tod, i) => (
-            <div key={i}>
-              <TaskCardDraggable task={tod} />
-            </div>
+
+      {/* Board */}
+      <DndContext onDragEnd={handleDragEnd}>
+        <div className="grid grid-cols-12 gap-6 mt-2">
+          {Object.entries(columns).map(([colId, tasks]) => (
+            <Column key={colId} id={colId} title={colId} tasks={tasks}>
+              {tasks.map((task, i) => (
+                <TaskCardDraggable
+                  key={colId + "-" + i}
+                  task={task}
+                  id={`${colId}-${i}`}
+                />
+              ))}
+            </Column>
           ))}
-        </div>
-        <div className="bg-black rounded p-2 min-h-64">
-          <div className="flex justify-between">
-            <p className="text-sm text-zinc-500">In progress (4)</p>
-            <div className="flex items-center gap-1">
-              <PlusCircle size={16} />
-              <p className="text-sm">Add new task</p>
-            </div>
-          </div>
-          {inProgress.map((tod, i) => (
-            <div key={i}>
-              <TaskCardDraggable task={tod} />
-            </div>
-          ))}
-        </div>
-        <div className="bg-black rounded p-2 min-h-64">
-          <div className="flex justify-between">
-            <p className="text-sm text-zinc-500">Done (3)</p>
-            <div className="flex items-center gap-1">
-              <PlusCircle size={16} />
-              <p className="text-sm">Add new task</p>
-            </div>
-          </div>
-          {done.map((tod, i) => (
-            <div key={i}>
-              <TaskCardDraggable task={tod} />
-            </div>
-          ))}
-        </div>
-      </div>
-      <DndContext
-        onDragOver={({ over }) => setIsOver(!!over)}
-        onDragEnd={({ over }) => {
-          if (over) {
-            alert("Dropped inside!");
-          }
-          setIsOver(false);
-        }}
-      >
-        <div className="flex gap-10 p-10">
-          <Draggable />
-          <Droppable isOver={isOver} />
         </div>
       </DndContext>
     </div>

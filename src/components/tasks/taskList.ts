@@ -6,7 +6,8 @@ export const todo = [
         taskTarget: 10,
         comments: 7,
         attachments: 2,
-        dateCreated: "24 Aug 2022"
+        dateCreated: "24 Aug 2022",
+        category: "todo"
     },
     {
         title: "Add more ui/ux mockups",
@@ -15,7 +16,8 @@ export const todo = [
         taskTarget: 10,
         comments: 4,
         attachments: 0,
-        dateCreated: "25 Aug 2022"
+        dateCreated: "25 Aug 2022",
+        category: "todo"
     },
     {
         title: "Design few mobile screens",
@@ -24,7 +26,8 @@ export const todo = [
         taskTarget: 10,
         comments: 6,
         attachments: 4,
-        dateCreated: "26 Aug 2022"
+        dateCreated: "26 Aug 2022",
+        category: "todo"
     },
     {
         title: "Create a tweet and promote",
@@ -33,7 +36,8 @@ export const todo = [
         taskTarget: 14,
         comments: 4,
         attachments: 0,
-        dateCreated: "27 Aug 2022"
+        dateCreated: "27 Aug 2022",
+        category: "todo"
     }
 ]
 
@@ -45,7 +49,8 @@ export const inProgress = [
         taskTarget: 10,
         comments: 2,
         attachments: 0,
-        dateCreated: "12 Nov 2022"
+        dateCreated: "12 Nov 2022",
+        category: "inProgress"
     },
     {
         title: "Create brand guideline",
@@ -54,7 +59,8 @@ export const inProgress = [
         taskTarget: 10,
         comments: 2,
         attachments: 13,
-        dateCreated: "13 Nov 2022"
+        dateCreated: "13 Nov 2022",
+        category: "inProgress"
     },
     {
         title: "Create wireframe for ios apps",
@@ -63,7 +69,8 @@ export const inProgress = [
         taskTarget: 10,
         comments: 4,
         attachments: 0,
-        dateCreated: "14 Nov 2022"
+        dateCreated: "14 Nov 2022",
+        category: "inProgress"
     },
     {
         title: "Create ui kit for layout",
@@ -72,7 +79,8 @@ export const inProgress = [
         taskTarget: 10,
         comments: 4,
         attachments: 0,
-        dateCreated: "15 Nov 2022"
+        dateCreated: "15 Nov 2022",
+        category: "inProgress"
     }
 ]
 
@@ -84,7 +92,8 @@ export const done = [
         taskTarget: 10,
         comments: 1,
         attachments: 5,
-        dateCreated: "6 Jan 2022"
+        dateCreated: "6 Jan 2022",
+        category: "done"
     },
     {
         title: "Launch product promotion",
@@ -93,7 +102,8 @@ export const done = [
         taskTarget: 10,
         comments: 17,
         attachments: 3,
-        dateCreated: "7 Jan 2022"
+        dateCreated: "7 Jan 2022",
+        category: "done"
     },
     {
         title: "Make twitter banner",
@@ -102,6 +112,7 @@ export const done = [
         taskTarget: 10,
         comments: 4,
         attachments: 0,
-        dateCreated: "8 Jan 2022"
+        dateCreated: "8 Jan 2022",
+        category: "done"
     }
 ]

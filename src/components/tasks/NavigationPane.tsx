@@ -9,7 +9,6 @@ import {
   SquareKanban,
   User,
 } from "lucide-react";
-import React from "react";
 
 const NavigationPane = () => {
   return (
@@ -19,7 +18,7 @@ const NavigationPane = () => {
         <LayoutGrid size={18}/>
         <User size={18}/>
         <Calendar size={18} />
-        <SquareKanban size={18} />
+        <SquareKanban size={18}/>
         <CloudUpload size={18} />
         <Map size={18} />
         <SlidersHorizontal size={18} />
