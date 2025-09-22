@@ -11,17 +11,20 @@ import { DndContext, useDroppable } from "@dnd-kit/core";
 import { useState } from "react";
 import { done as initDone, todo as initTodo, inProgress as initProgress } from "./taskList";
 import TaskCardDraggable from "./TaskCardDraggable";
+import { useThemeStore } from "@/store/useThemeStore";
 
 // Droppable column
 function Column({ id, title, tasks, children }) {
   const { setNodeRef, isOver } = useDroppable({ id });
+    const { theme } = useThemeStore(); // get from zustand
 
   return (
     <div
       ref={setNodeRef}
-      className={`bg-black rounded p-2 min-h-64 col-span-4 transition-colors ${
+      className={theme === "dark" ? `bg-black rounded p-2 min-h-64 col-span-4 transition-colors ${
         isOver ? "bg-zinc-800" : "bg-black"
-      }`}
+      }` : `bg-white text-black rounded p-2 min-h-64 col-span-4 transition-colors ${
+        isOver ? "bg-zinc-800" : "bg-white"}`}
     >
       <div className="flex justify-between">
         <p className="text-sm text-zinc-500">
@@ -38,6 +41,7 @@ function Column({ id, title, tasks, children }) {
 }
 
 const DisplayPanel = () => {
+    const { theme } = useThemeStore(); // get from zustand
   const [columns, setColumns] = useState({
     todo: initTodo,
     inProgress: initProgress,
@@ -107,9 +111,9 @@ const DisplayPanel = () => {
 
       {/* Board */}
       <DndContext onDragEnd={handleDragEnd}>
-        <div className="grid grid-cols-12 gap-6 mt-2">
+        <div className={theme === "dark" ? "text-white bg-neutral-950 grid grid-cols-12 gap-6 mt-2" : "bg-white text-black grid grid-cols-12 gap-6 mt-2"}>
           {Object.entries(columns).map(([colId, tasks]) => (
-            <Column key={colId} id={colId} title={colId} tasks={tasks}>
+            <Column  key={colId} id={colId} title={colId} tasks={tasks}>
               {tasks.map((task, i) => (
                 <TaskCardDraggable
                   key={colId + "-" + i}
