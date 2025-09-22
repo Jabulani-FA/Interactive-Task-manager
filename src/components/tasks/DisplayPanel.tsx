@@ -28,7 +28,7 @@ function Column({ id, title, tasks, children }) {
       ref={setNodeRef}
       className={
         theme === "dark"
-          ? `bg-black rounded p-2 min-h-64 col-span-4 transition-colors ${
+          ? `bg-black rounded-xl p-2 min-h-64 col-span-4 transition-colors ${
               isOver ? "bg-zinc-800" : "bg-black"
             }`
           : `bg-white text-black rounded p-2 min-h-64 col-span-4 transition-colors ${
@@ -122,7 +122,7 @@ const DisplayPanel = () => {
           <p className="font-bold text-sm">Filter</p>
           <p className="font-bold text-sm text-zinc-300">Sort</p>
           <CircleEllipsis className="text-zinc-300" size={16} />
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl text-sm">
+          <button className={theme==="dark"?"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl text-sm":"bg-black hover:bg-zinc-900 text-white font-bold py-2 px-4 rounded-2xl text-sm"}>
             New template
           </button>
         </div>
@@ -135,7 +135,7 @@ const DisplayPanel = () => {
         <div
           className={
             theme === "dark"
-              ? "text-white bg-neutral-950 grid grid-cols-12 gap-6 mt-2"
+              ? "text-white grid grid-cols-12 gap-6 mt-2"
               : "bg-white text-black grid grid-cols-12 gap-6 mt-2"
           }
         >
