@@ -49,7 +49,7 @@ const NavPanel = () => {
             {projectOpen && (
               <ul className={theme=== "dark"?`ml-4 mt-2 space-y-1 text-sm text-zinc-300 font-bold`:"ml-4 mt-2 space-y-1 text-sm text-zinc-700 font-bold"}>
                 <li>All projects (3)</li>
-                <li>Design system</li>
+                <li><span className="rounded-3xl p-1 px-3 bg-zinc-200 -ml-3">Design system</span></li>
                 <li>User flow</li>
                 <li>UX research</li>
               </ul>
@@ -83,7 +83,7 @@ const NavPanel = () => {
               <ul className={theme=== "dark"?`ml-4 mt-2 space-y-1 text-sm text-zinc-300 font-bold`:"ml-4 mt-2 space-y-1 text-sm text-zinc-700 font-bold"}>
                 <li>All tasks (11)</li>
                 <li>To do (4)</li>
-                <li>In progress (4)</li>
+                <li><span className="rounded-3xl p-1 px-3 bg-zinc-200 -ml-3">In progress (4)</span></li>
                 <li>Done (3)</li>
               </ul>
             )}
