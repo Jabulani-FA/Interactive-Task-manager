@@ -18,8 +18,8 @@ const NavPanel = () => {
           <Plus size={16} />
         </div>
         <div className="flex justify-between items-center mt-4">
-          <h6 className="text-sm text-neutral-500 font-bold">Team</h6>
-          <ChevronRight size={16} />
+          <h6 className={theme==="dark"? `text-white text-sm text-neutral-500 font-bold`:"text-black text-sm text-neutral-500 font-bold"}>Team</h6>
+          <ChevronRight size={16} className={theme==="dark"? `text-white`:"text-black"} />
         </div>
 
         <div className="text-white">
@@ -30,7 +30,9 @@ const NavPanel = () => {
               className="flex items-center justify-between w-full mt-4"
             >
               <span
-                className={`text-sm font-bold ${
+                className={theme==="dark"? `text-white text-sm text-neutral-500 font-bold ${
+                  !projectOpen && "text-neutral-500"
+                }`:`text-black text-sm text-neutral-500 font-bold ${
                   !projectOpen && "text-neutral-500"
                 }`}
               >
@@ -38,14 +40,14 @@ const NavPanel = () => {
               </span>
               <span>
                 {projectOpen ? (
-                  <ChevronDown size={16} />
+                  <ChevronDown size={16} className={theme==="dark"? `text-white`:"text-black"} />
                 ) : (
-                  <ChevronRight size={16} />
+                  <ChevronRight size={16} className={theme==="dark"? `text-white`:"text-black"} />
                 )}
               </span>
             </button>
             {projectOpen && (
-              <ul className="ml-4 mt-2 space-y-1 text-sm text-zinc-300 font-bold">
+              <ul className={theme=== "dark"?`ml-4 mt-2 space-y-1 text-sm text-zinc-300 font-bold`:"ml-4 mt-2 space-y-1 text-sm text-zinc-700 font-bold"}>
                 <li>All projects (3)</li>
                 <li>Design system</li>
                 <li>User flow</li>
@@ -61,7 +63,9 @@ const NavPanel = () => {
               className="flex items-center justify-between w-full"
             >
               <span
-                className={`text-sm font-bold ${
+                className={theme==="dark"? `text-white text-sm text-neutral-500 font-bold ${
+                  !tasksOpen && "text-neutral-500"
+                }`:`text-black text-sm text-neutral-500 font-bold ${
                   !tasksOpen && "text-neutral-500"
                 }`}
               >
@@ -69,14 +73,14 @@ const NavPanel = () => {
               </span>
               <span>
                 {tasksOpen ? (
-                  <ChevronDown size={16} />
+                  <ChevronDown size={16} className={theme==="dark"? `text-white`:"text-black"} />
                 ) : (
-                  <ChevronRight size={16} />
+                  <ChevronRight size={16} className={theme==="dark"? `text-white`:"text-black"}  />
                 )}
               </span>
             </button>
             {tasksOpen && (
-              <ul className="ml-4 mt-2 space-y-1 text-sm text-zinc-300 font-bold">
+              <ul className={theme=== "dark"?`ml-4 mt-2 space-y-1 text-sm text-zinc-300 font-bold`:"ml-4 mt-2 space-y-1 text-sm text-zinc-700 font-bold"}>
                 <li>All tasks (11)</li>
                 <li>To do (4)</li>
                 <li>In progress (4)</li>
@@ -86,12 +90,12 @@ const NavPanel = () => {
           </div>
 
           <div className="flex justify-between items-center mt-4">
-            <h6 className="text-sm text-neutral-500 font-bold">Reminders</h6>
-            <ChevronRight size={16} />
+            <h6 className={theme==="dark"? `text-white text-sm text-neutral-500 font-bold`:"text-black text-sm text-neutral-500 font-bold"} >Reminders</h6>
+            <ChevronRight size={16} className={theme==="dark"? `text-white`:"text-black"}  />
           </div>
           <div className="flex justify-between items-center mt-4">
-            <h6 className="text-sm text-neutral-500 font-bold">Messengers</h6>
-            <ChevronRight size={16} />
+            <h6 className={theme==="dark"? `text-white text-sm text-neutral-500 font-bold`:"text-black text-sm text-neutral-500 font-bold"}>Messengers</h6>
+            <ChevronRight size={16} className={theme==="dark"? `text-white`:"text-black"}  />
           </div>
         </div>
        <div className="absolute bottom-0 mb-6 flex justify-around">
@@ -103,7 +107,7 @@ const NavPanel = () => {
                 theme === "light" ? "bg-zinc-700 text-white" : "text-zinc-400"
               }`}
             >
-              <Sun size={16} />
+              <Sun size={16} className={theme==="dark"? `text-white`:"text-black"}  />
               <span>Light</span>
             </button>
 
@@ -114,7 +118,7 @@ const NavPanel = () => {
                 theme === "dark" ? "bg-zinc-700 text-white" : "text-zinc-400"
               }`}
             >
-              <Moon size={16} />
+              <Moon size={16} className={theme==="dark"? `text-white`:"text-black"}  />
               <span>Dark</span>
             </button>
           </div>
