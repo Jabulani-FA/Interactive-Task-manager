@@ -5,12 +5,17 @@ import {
   Paperclip,
 } from "lucide-react";
 import { useDraggable } from "@dnd-kit/core";
+import { Progress } from "@/components/ui/progress";
 
 // --- Draggable component ---
 function Draggable({ task, id }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: id
+    id: id,
   });
+  const percent = Math.min(
+    100,
+    Math.round((task.taskProgress / task.taskTarget) * 100)
+  );
 
   const style = {
     transform: transform
@@ -31,7 +36,9 @@ function Draggable({ task, id }) {
           <h4 className="text-sm font-bold">{task.title}</h4>
           <CircleEllipsis size={18} />
         </div>
-        <p className="text-xs text-start font-light text-zinc-500 mb-3">{task.sub}</p>
+        <p className="text-xs text-start font-light text-zinc-500 mb-3">
+          {task.sub}
+        </p>
         <div className="flex justify-between">
           <div className="flex items-center gap-2">
             <Logs className="text-zinc-500" size={16} />
@@ -40,6 +47,9 @@ function Draggable({ task, id }) {
           <p className="text-xs font-bold text-zinc-500">
             {task.taskProgress}/{task.taskTarget}
           </p>
+        </div>
+        <div className="mt-3">
+          <Progress value={percent} className="h-2" />
         </div>
         <div className="flex justify-between mt-2">
           <div className="bg-zinc-700 p-px px-4 rounded-2xl">
